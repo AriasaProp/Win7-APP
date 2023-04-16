@@ -6,12 +6,13 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
-    - run: |
+    - uses: actions/checkout@v3.4.0
+    - name: Command
+      working-directory: ${{ github.workspace }}
+      run: |
         mkdir build
         cmake -B build -G "Visual Studio 17 2022" -A Win32 .
         cmake --build build --config Release
-      working-directory: ${{ github.workspace }}
     - uses: actions/upload-artifact@v3
       with:
         name: WinApp
