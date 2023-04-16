@@ -1,4 +1,3 @@
-#ifdef _WIN32 // note the underscore: without it, it's not msdn official!
 #include <windows.h>
 LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
@@ -72,35 +71,4 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam){
     }
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
-#elif __unix__ // all unices, not all compilers
-#include <iostream>
-int main () {
-	int a = 7;
-	a -= 3;
-	std::cout << "Hello there! in Unix" << std::endl;
-	return 0;
-}
-#elif __linux__
-#include <iostream>
-int main () {
-	int a = 7;
-	a *= 9;
-	std::cout << "Hello there! in Linux" << std::endl;
-	return 0;
-}
-#elif __APPLE__
-#include <iostream>
-int main () {
-	int a = 7;
-	a *= 2;
-	std::cout << "Hello there! in Apple" << std::endl;
-	return 0;
-}
-#else
-#include <iostream>
-int main () {
-	std::cout << "Hello there!" << std::endl;
-	return 0;
-}
-#endif
 

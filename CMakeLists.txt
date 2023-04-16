@@ -6,13 +6,12 @@ set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSION OFF)
-# Set the target platform to 32-bit
 set(CMAKE_GENERATOR_PLATFORM Win32)
 
 # Add the include directory
-include_directories(include)
-# Add the source directory
-add_subdirectory(src)
+file(GLOB_RECURSE Include_Dir LIST_DIRECTORIES true ".")
+file(GLOB_RECURSE Src_Files "*.cpp")
 
+include_directories(${Include_Dir})
 # Add the executable
-add_executable(my_project ${MY_SOURCES})
+add_executable(${PROJECT_NAME} ${Src_Files})
