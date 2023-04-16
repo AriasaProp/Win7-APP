@@ -11,12 +11,12 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .. -G "Visual Studio 15 2017" -A Win32
+        cmake .. -G -A Win32
     - name: Build
       run: |
         cmake --build . --config Release
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: my_project.exe
-        path: build/Release/my_project.exe
+        name: WinApp
+        path: build/Release/WinApp.exe

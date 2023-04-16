@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.10)
 
-project(Win7-App LANGUAGES CXX)
+project(WinApp LANGUAGES CXX)
 
 set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_STANDARD 11)
