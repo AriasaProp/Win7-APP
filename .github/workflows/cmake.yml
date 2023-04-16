@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: |
-        rm -rf build
+        mkdir build
         cmake -B build -G "Visual Studio 17 2022" -A Win32 .
         cmake --build build --config Release
       working-directory: ${{ github.workspace }}
