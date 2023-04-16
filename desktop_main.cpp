@@ -1,8 +1,8 @@
 #include <windows.h>
+
 LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
+
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
-		(void)pCmdLine;//nothing
-		(void)hPrevInstance;//nothing
     // Register the window class.
     const wchar_t CLASS_NAME[]  = L"Sample Window Class";
     
@@ -12,7 +12,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     wc.hInstance     = hInstance;
     wc.lpszClassName = CLASS_NAME;
 
-    RegisterClass(&wc);
+    if (!RegisterClass(&wc)) {
+        MessageBox(NULL, L"Window Registration Failed!", L"Error", MB_ICONERROR | MB_OK);
+        return 0;
+    }
 
     // Create the window.
 
@@ -33,6 +36,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
     if (hwnd == NULL)
     {
+        MessageBox(NULL, L"Window Creation Failed!", L"Error", MB_ICONERROR | MB_OK);
         return 0;
     }
 
@@ -71,4 +75,3 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam){
     }
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
-
