@@ -7,16 +7,14 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Configure CMake
-      run: |
-        mkdir build
-        cd build
-        cmake .. -G "Visual Studio 17 2022" -A Win32
-    - name: Build
-      run: |
-        cmake --build . --config Release
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3
+    - run: |
+        rm -rf build
+        cmake -B build -G "Visual Studio 17 2022" -A Win32 .
+        cmake --build build --config Release
+      working-directory: ${{ github.workspace }}
+    - uses: actions/upload-artifact@v3
       with:
         name: WinApp
         path: build/Release/WinApp.exe
+      if: success()
+      
